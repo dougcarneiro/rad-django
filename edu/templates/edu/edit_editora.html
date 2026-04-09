@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Editora{% endblock %}
+{% block header_title %}Editar editora{% endblock %}
+
+{% block content %}
+<section>
+    <form method="post">
+        {% csrf_token %}
+        <p>Edição de Editora</p>
+        {{ form.as_p }}
+        <button type="submit">Salvar alterações</button>
+    </form>
+    <p><a href="{% url 'edu:list_editoras' %}">Voltar para listagem de editoras</a></p>
+</section>
+{% endblock %}

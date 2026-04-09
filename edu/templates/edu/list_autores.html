@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Autores{% endblock %}
+{% block header_title %}Lista de autores{% endblock %}
+
+{% block content %}
+<section>
+    {% include 'edu/_form_autor.html' %}
+</section>
+
+<section>
+    <p>Listagem de Autores</p>
+    {% if autores %}
+        <ul>
+            {% for autor in autores %}
+                <li>
+                    <a href="{% url 'edu:edit_autor' autor.pk %}">{{ autor }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum autor cadastrado.</p>
+    {% endif %}
+</section>
+{% endblock %}

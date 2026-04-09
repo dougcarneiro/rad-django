@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Livro{% endblock %}
+{% block header_title %}Editar livro{% endblock %}
+
+{% block content %}
+<section>
+    <form method="post">
+        {% csrf_token %}
+        <p>Edição de Livro</p>
+        {{ form.as_p }}
+        <button type="submit">Salvar alterações</button>
+    </form>
+    <p><a href="{% url 'edu:list_livros' %}">Voltar para listagem de livros</a></p>
+</section>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Editoras{% endblock %}
+{% block header_title %}Lista de editoras{% endblock %}
+
+{% block content %}
+<section>
+    {% include 'edu/_form_editora.html' %}
+</section>
+
+<section>
+    <p>Listagem de Editoras</p>
+    {% if editoras %}
+        <ul>
+            {% for editora in editoras %}
+                <li>
+                    <a href="{% url 'edu:edit_editora' editora.pk %}">{{ editora }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma editora cadastrada.</p>
+    {% endif %}
+</section>
+{% endblock %}

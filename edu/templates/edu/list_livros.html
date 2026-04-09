@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Livros{% endblock %}
+{% block header_title %}Lista de livros{% endblock %}
+
+{% block content %}
+<section>
+    {% include 'edu/_form_livro.html' %}
+</section>
+
+<section>
+    <p>Listagem de Livros</p>
+    {% if livros %}
+        <ul>
+            {% for livro in livros %}
+                <li>
+                    <a href="{% url 'edu:edit_livro' livro.pk %}">{{ livro }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum livro cadastrado.</p>
+    {% endif %}
+</section>
+{% endblock %}

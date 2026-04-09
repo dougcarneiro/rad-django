@@ -1,0 +1,6 @@
+<form method="post" action="{% url 'edu:create_livro' %}">
+    {% csrf_token %}
+    <p>Adicionar Livro</p>
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+</form>

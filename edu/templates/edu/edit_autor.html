@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Autor{% endblock %}
+{% block header_title %}Editar autor{% endblock %}
+
+{% block content %}
+<section>
+    <form method="post">
+        <p>Edição de Autor</p>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar alterações</button>
+    </form>
+    <p><a href="{% url 'edu:list_autores' %}">Voltar para listagem de autores</a></p>
+</section>
+{% endblock %}
