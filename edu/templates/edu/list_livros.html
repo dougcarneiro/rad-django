@@ -10,16 +10,39 @@
 
 <section>
     <p>Listagem de Livros</p>
-    {% if livros %}
-        <ul>
-            {% for livro in livros %}
-                <li>
-                    <a href="{% url 'edu:edit_livro' livro.pk %}">{{ livro }}</a>
-                </li>
+    <ul>
+        {% for livro in livros %}
+            <li>
+                <a href="{% url 'edu:edit_livro' livro.pk %}">{{ livro }}</a>
+            </li>
+        {% empty %}
+            <li>Nenhum livro encontrado.</li>
+        {% endfor %}
+    </ul>
+    {% if livros.has_other_pages %}
+    <nav class="pagination" aria-label="Page navigation">
+        <ul style="list-style:none; display:flex; gap:8px; padding:8px;">
+            {% if livros.has_previous %}
+                <li><a href="?page={{ livros.previous_page_number }}">&laquo; Anterior</a></li>
+            {% else %}
+                <li style="opacity:0.5;">&laquo; Anterior</li>
+            {% endif %}
+
+            {% for num in livros.paginator.page_range %}
+                {% if livros.number == num %}
+                    <li><strong>{{ num }}</strong></li>
+                {% else %}
+                    <li><a href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
             {% endfor %}
+
+            {% if livros.has_next %}
+                <li><a href="?page={{ livros.next_page_number }}">Próximo &raquo;</a></li>
+            {% else %}
+                <li style="opacity:0.5;">Próximo &raquo;</li>
+            {% endif %}
         </ul>
-    {% else %}
-        <p>Nenhum livro cadastrado.</p>
     {% endif %}
+    </nav>
 </section>
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from .forms import AutorForm, EditoraForm, LivroForm
 from .models import Autor, Editora, Livro
 
@@ -68,7 +69,10 @@ def create_livro(request):
     return render(request, 'edu/create_livro.html', {'form': form})
 
 def list_livros(request):
-    livros = Livro.objects.all()
+    livros_list = Livro.objects.all().order_by('-titulo')
+    paginator = Paginator(livros_list, 10)
+    page_number = request.GET.get('page')
+    livros = paginator.get_page(page_number)
     form = LivroForm()
     return render(request, 'edu/list_livros.html', {'livros': livros, 'form': form})
 
