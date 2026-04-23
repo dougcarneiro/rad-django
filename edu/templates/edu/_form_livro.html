@@ -1,6 +1,108 @@
 <form method="post" action="{% url 'edu:create_livro' %}">
     {% csrf_token %}
     <p>Adicionar Livro</p>
-    {{ form.as_p }}
+
+    {% for field in form %}
+        {% if field.name == 'autores' %}
+            <p>
+                <label>{{ field.label }}:</label>
+                <input
+                    type="text"
+                    id="busca-autor"
+                    placeholder="Buscar autor..."
+                    autocomplete="off"
+                    style="display:block; margin-bottom:6px; padding:4px 8px; width:100%; box-sizing:border-box;"
+                >
+                <span id="autores-lista">
+                    {% for choice in field %}
+                        <label
+                            class="autor-item"
+                            data-nome="{{ choice.choice_label|lower }}"
+                            style="display:block;"
+                        >
+                            {{ choice.tag }} {{ choice.choice_label }}
+                        </label>
+                    {% endfor %}
+                </span>
+                <button type="button" id="btn-ver-todos" style="margin-top:6px; display:none;">
+                    Ver todos os autores
+                </button>
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <span style="color:red;">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </p>
+        {% else %}
+            <p>{{ field.label_tag }} {{ field }} {{ field.errors }}</p>
+        {% endif %}
+    {% endfor %}
+
     <button type="submit">Salvar</button>
 </form>
+
+<script>
+(function () {
+    const LIMITE = 10;
+    const buscaInput = document.getElementById('busca-autor');
+    const btnVerTodos = document.getElementById('btn-ver-todos');
+    const items = Array.from(document.querySelectorAll('.autor-item'));
+
+    let mostrandoTodos = false;
+
+    function aplicarVisibilidade(filtro) {
+        const termo = filtro.trim().toLowerCase();
+        let visiveis = 0;
+
+        items.forEach(item => {
+            const nome = item.dataset.nome;
+            const bate = termo === '' || nome.includes(termo);
+
+            if (!bate) {
+                item.style.display = 'none';
+                return;
+            }
+
+            if (termo !== '') {
+                // Durante a busca, mostra todos que correspondem
+                item.style.display = 'block';
+                visiveis++;
+            } else {
+                // Sem busca: respeita o limite
+                if (mostrandoTodos || visiveis < LIMITE) {
+                    item.style.display = 'block';
+                    visiveis++;
+                } else {
+                    item.style.display = 'none';
+                }
+            }
+        });
+
+        // Mostra o botão só quando não há busca e existem autores além do limite
+        if (termo === '' && items.length > LIMITE) {
+            if (mostrandoTodos) {
+                btnVerTodos.textContent = 'Ver menos';
+                btnVerTodos.style.display = 'inline-block';
+            } else {
+                btnVerTodos.textContent = 'Ver todos os autores (' + items.length + ')';
+                btnVerTodos.style.display = 'inline-block';
+            }
+        } else {
+            btnVerTodos.style.display = 'none';
+        }
+    }
+
+    buscaInput.addEventListener('input', function () {
+        mostrandoTodos = false;
+        aplicarVisibilidade(this.value);
+    });
+
+    btnVerTodos.addEventListener('click', function () {
+        mostrandoTodos = !mostrandoTodos;
+        aplicarVisibilidade(buscaInput.value);
+    });
+
+    // Estado inicial
+    aplicarVisibilidade('');
+})();
+</script>
