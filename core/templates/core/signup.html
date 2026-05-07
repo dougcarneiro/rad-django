@@ -1,0 +1,30 @@
+{% extends "core/base_auth.html" %}
+
+{% block title %}Criar conta — EDU{% endblock %}
+
+{% block content %}
+<h1>Sistema EDU</h1>
+<p class="subtitle">Crie sua conta para continuar</p>
+
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <div>
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                <ul class="errorlist">
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit">Criar conta</button>
+</form>
+
+<p class="footer-link">
+    Já tem conta? <a href="{% url 'core:login' %}">Entrar</a>
+</p>
+{% endblock %}

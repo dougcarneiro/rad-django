@@ -1,0 +1,17 @@
+{% extends "core/base_auth.html" %}
+
+{% block title %}Início — EDU{% endblock %}
+
+{% block content %}
+<h1>Sistema EDU</h1>
+<p class="subtitle">Bem-vindo, {{ user.username }}!</p>
+
+<div style="display: grid; gap: 12px; margin-top: 8px;">
+    <a href="{% url 'edu:home' %}" style="display:block; background:#1d4ed8; color:white; text-align:center; padding:11px 16px; border-radius:10px; text-decoration:none; font-size:1rem;">
+        Acessar Sistema
+    </a>
+    <a href="{% url 'core:logout' %}" style="display:block; background:#f3f4f6; color:#374151; text-align:center; padding:11px 16px; border-radius:10px; text-decoration:none; font-size:1rem;">
+        Sair
+    </a>
+</div>
+{% endblock %}

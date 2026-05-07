@@ -1,11 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from .forms import AutorForm, EditoraForm, LivroForm
 from .models import Autor, Editora, Livro
 
+
+@login_required
 def home(request):
     return render(request, 'home.html')
 
+
+@login_required
 def create_autor(request):
     if request.method == 'POST':
         form = AutorForm(request.POST)
@@ -16,11 +21,14 @@ def create_autor(request):
         form = AutorForm()
     return render(request, 'edu/create_autor.html', {'form': form})
 
+@login_required
 def list_autores(request):
     autores = Autor.objects.all()
     form = AutorForm()
     return render(request, 'edu/list_autores.html', {'autores': autores, 'form': form})
 
+
+@login_required
 def edit_autor(request, pk):
     autor = Autor.objects.get(pk=pk)
     if request.method == 'POST':
@@ -32,6 +40,7 @@ def edit_autor(request, pk):
         form = AutorForm(instance=autor)
     return render(request, 'edu/edit_autor.html', {'form': form})
 
+@login_required
 def create_editora(request):
     if request.method == 'POST':
         form = EditoraForm(request.POST)
@@ -42,6 +51,7 @@ def create_editora(request):
         form = EditoraForm()
     return render(request, 'edu/create_editora.html', {'form': form})
 
+@login_required
 def edit_editora(request, pk):
     editora = Editora.objects.get(pk=pk)
     if request.method == 'POST':
@@ -53,11 +63,13 @@ def edit_editora(request, pk):
         form = EditoraForm(instance=editora)
     return render(request, 'edu/edit_editora.html', {'form': form})
 
+@login_required
 def list_editoras(request):
     editoras = Editora.objects.all()
     form = EditoraForm()
     return render(request, 'edu/list_editoras.html', {'editoras': editoras, 'form': form})
 
+@login_required
 def create_livro(request):
     if request.method == 'POST':
         form = LivroForm(request.POST)
@@ -68,6 +80,7 @@ def create_livro(request):
         form = LivroForm()
     return render(request, 'edu/create_livro.html', {'form': form})
 
+@login_required
 def list_livros(request):
     livros_list = Livro.objects.all().order_by('-titulo')
     paginator = Paginator(livros_list, 10)
@@ -76,6 +89,7 @@ def list_livros(request):
     form = LivroForm()
     return render(request, 'edu/list_livros.html', {'livros': livros, 'form': form})
 
+@login_required
 def edit_livro(request, pk):
     livro = Livro.objects.get(pk=pk)
     if request.method == 'POST':
