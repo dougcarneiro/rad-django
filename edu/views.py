@@ -1,5 +1,5 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required, permission_required
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from .forms import AutorForm, EditoraForm, LivroForm
 from .models import Autor, Editora, Livro
@@ -10,7 +10,7 @@ def home(request):
     return render(request, 'home.html')
 
 
-@login_required
+@permission_required('edu.add_autor')
 def create_autor(request):
     if request.method == 'POST':
         form = AutorForm(request.POST)
@@ -28,9 +28,9 @@ def list_autores(request):
     return render(request, 'edu/list_autores.html', {'autores': autores, 'form': form})
 
 
-@login_required
+@permission_required('edu.change_autor')
 def edit_autor(request, pk):
-    autor = Autor.objects.get(pk=pk)
+    autor = get_object_or_404(Autor, pk=pk)
     if request.method == 'POST':
         form = AutorForm(request.POST, instance=autor)
         if form.is_valid():
@@ -40,7 +40,7 @@ def edit_autor(request, pk):
         form = AutorForm(instance=autor)
     return render(request, 'edu/edit_autor.html', {'form': form})
 
-@login_required
+@permission_required('edu.add_editora')
 def create_editora(request):
     if request.method == 'POST':
         form = EditoraForm(request.POST)
@@ -51,9 +51,9 @@ def create_editora(request):
         form = EditoraForm()
     return render(request, 'edu/create_editora.html', {'form': form})
 
-@login_required
+@permission_required('edu.change_editora')
 def edit_editora(request, pk):
-    editora = Editora.objects.get(pk=pk)
+    editora = get_object_or_404(Editora, pk=pk)
     if request.method == 'POST':
         form = EditoraForm(request.POST, instance=editora)
         if form.is_valid():
@@ -69,7 +69,7 @@ def list_editoras(request):
     form = EditoraForm()
     return render(request, 'edu/list_editoras.html', {'editoras': editoras, 'form': form})
 
-@login_required
+@permission_required('edu.add_livro')
 def create_livro(request):
     if request.method == 'POST':
         form = LivroForm(request.POST)
@@ -89,9 +89,9 @@ def list_livros(request):
     form = LivroForm()
     return render(request, 'edu/list_livros.html', {'livros': livros, 'form': form})
 
-@login_required
+@permission_required('edu.change_livro')
 def edit_livro(request, pk):
-    livro = Livro.objects.get(pk=pk)
+    livro = get_object_or_404(Livro, pk=pk)
     if request.method == 'POST':
         form = LivroForm(request.POST, instance=livro)
         if form.is_valid():
@@ -100,3 +100,11 @@ def edit_livro(request, pk):
     else:
         form = LivroForm(instance=livro)
     return render(request, 'edu/edit_livro.html', {'form': form})
+
+@permission_required('edu.delete_livro')
+def delete_livro(request, pk):
+    livro = get_object_or_404(Livro, pk=pk)
+    if request.method == 'POST':
+        livro.delete()
+        return redirect('edu:list_livros')
+    return render(request, 'edu/delete_livro.html', {'livro': livro})

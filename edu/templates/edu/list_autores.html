@@ -4,9 +4,11 @@
 {% block header_title %}Lista de autores{% endblock %}
 
 {% block content %}
+{% if perms.edu.add_autor %}
 <section>
-    {% include 'edu/_form_autor.html' %}
-</section>
+        <a href="{% url 'edu:create_autor' %}" style="display:inline-block; margin-bottom: 20px; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Cadastrar Novo Autor</a>
+    </section>
+{% endif %}
 
 <section>
     <p>Listagem de Autores</p>
@@ -14,11 +16,16 @@
         <ul>
             {% for autor in autores %}
                 <li>
-                    <a href="{% url 'edu:edit_autor' autor.pk %}">{{ autor }}</a>
+                    {% if perms.edu.change_autor %}
+                        <a href="{% url 'edu:edit_autor' autor.pk %}">{{ autor }}</a>
+                    {% else %}
+                        {{ autor }}
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
-    {% else %}
+{% else %}
+
         <p>Nenhum autor cadastrado.</p>
     {% endif %}
 </section>

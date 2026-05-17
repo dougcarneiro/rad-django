@@ -4,16 +4,26 @@
 {% block header_title %}Lista de livros{% endblock %}
 
 {% block content %}
+{% if perms.edu.add_livro %}
 <section>
-    {% include 'edu/_form_livro.html' %}
-</section>
+        <a href="{% url 'edu:create_livro' %}" style="display:inline-block; margin-bottom: 20px; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Cadastrar Novo Livro</a>
+    </section>
+{% endif %}
 
 <section>
     <p>Listagem de Livros</p>
     <ul>
         {% for livro in livros %}
             <li>
-                <a href="{% url 'edu:edit_livro' livro.pk %}">{{ livro }}</a>
+                {% if perms.edu.change_livro %}
+                    <a href="{% url 'edu:edit_livro' livro.pk %}">{{ livro }}</a>
+                {% else %}
+                    {{ livro }}
+                {% endif %}
+                
+                {% if perms.edu.delete_livro %}
+                    | <a href="{% url 'edu:delete_livro' livro.pk %}" style="color:red;">Excluir</a>
+                {% endif %}
             </li>
         {% empty %}
             <li>Nenhum livro encontrado.</li>
@@ -42,7 +52,7 @@
                 <li style="opacity:0.5;">Próximo &raquo;</li>
             {% endif %}
         </ul>
-    {% endif %}
     </nav>
+    {% endif %}
 </section>
 {% endblock %}
