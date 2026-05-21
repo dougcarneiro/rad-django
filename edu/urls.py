@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
 
 urlpatterns = [
@@ -19,4 +19,7 @@ urlpatterns = [
     path('livro/list/', views.list_livros, name='list_livros'),
     path('livro/<int:pk>/edit/', views.edit_livro, name='edit_livro'),
     path('livro/<int:pk>/delete/', views.delete_livro, name='delete_livro'),
+
+    # API
+    path('api/', include('edu.api_urls')),
 ]

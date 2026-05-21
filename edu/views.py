@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
+from rest_framework import viewsets, permissions
+from .serializers import AutorSerializer, EditoraSerializer    
 from .forms import AutorForm, EditoraForm, LivroForm
 from .models import Autor, Editora, Livro
 
@@ -108,3 +110,13 @@ def delete_livro(request, pk):
         livro.delete()
         return redirect('edu:list_livros')
     return render(request, 'edu/delete_livro.html', {'livro': livro})
+
+class AutorViewSet(viewsets.ModelViewSet):
+    queryset = Autor.objects.all()
+    serializer_class = AutorSerializer
+    permission_classes = [permissions.AllowAny]
+    
+class EditoraViewSet(viewsets.ModelViewSet):
+    queryset = Editora.objects.all()
+    serializer_class = EditoraSerializer
+    permission_classes = [permissions.AllowAny]
