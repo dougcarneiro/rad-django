@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
+{% load i18n %}
+
 {% block content %}
-<h2>Confirmar Exclusão</h2>
-<p>Tem certeza que deseja excluir o livro "{{ livro.titulo }}"?</p>
+<h2>{% translate "Confirmar Exclusão" %}</h2>
+<p>{% blocktranslate with titulo=livro.titulo %}Tem certeza que deseja excluir o livro "{{ titulo }}"?{% endblocktranslate %}</p>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Confirmar</button>
-    <a href="{% url 'edu:list_livros' %}">Cancelar</a>
+    <button type="submit">{% translate "Confirmar" %}</button>
+    <a href="{% url 'edu:list_livros' %}">{% translate "Cancelar" %}</a>
 </form>
 {% endblock %}

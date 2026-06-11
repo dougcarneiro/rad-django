@@ -1,5 +1,6 @@
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,21 +82,67 @@
             border-radius: 10px;
             cursor: pointer;
         }
+        
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: white;
+        }
+        .lang-switcher select {
+            padding: 2px 5px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .lang-switcher select option {
+            color: black;
+        }
+        header {
+            background: #1d4ed8;
+            color: white;
+            border-radius: 0 0 16px 16px;
+            position: relative;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Sistema EDU</h1>
         <nav>
-            <a href="{% url 'edu:home' %}">Início</a>
-            <a href="{% url 'edu:list_autores' %}">Autores</a>
-            <a href="{% url 'edu:list_editoras' %}">Editoras</a>
-            <a href="{% url 'edu:list_livros' %}">Livros</a>
+            <a href="{% url 'edu:home' %}">{% translate "Início" %}</a>
+            <a href="{% url 'edu:list_autores' %}">{% translate "Autores" %}</a>
+            <a href="{% url 'edu:list_editoras' %}">{% translate "Editoras" %}</a>
+            <a href="{% url 'edu:list_livros' %}">{% translate "Livros" %}</a>
             <div class="nav-user">
                 <span>{{ user.username }}</span>
-                <a href="{% url 'core:logout' %}">Sair</a>
+                <a href="{% url 'core:logout' %}">{% translate "Sair" %}</a>
             </div>
         </nav>
+        
+        <div class="lang-switcher">
+            <form action="{% url 'set_language' %}" method="post" id="lang-form">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                <label for="lang-select">{% translate "Idioma" %}:</label>
+                <select name="language" id="lang-select" onchange="document.getElementById('lang-form').submit();">
+                    {% get_current_language as CURRENT_LANG %}
+                    {% get_available_languages as AVAILABLE_LANGS %}
+                    {% for lang_code, lang_name in AVAILABLE_LANGS %}
+                        <option value="{{ lang_code }}"{% if lang_code == CURRENT_LANG %} selected{% endif %}>
+                            {{ lang_code|upper }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
     </header>
 
     <main>

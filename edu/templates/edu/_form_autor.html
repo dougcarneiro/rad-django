@@ -1,6 +1,7 @@
+{% load i18n %}
 <form method="post" action="{% url 'edu:create_autor' %}">
     {% csrf_token %}
-    <p>Adicionar Autor</p>
+    <p>{% translate "Adicionar Autor" %}</p>
     {{ form.as_p }}
-    <button type="submit">Salvar</button>
+    <button type="submit">{% translate "Salvar" %}</button>
 </form>

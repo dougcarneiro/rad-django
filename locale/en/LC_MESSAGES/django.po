@@ -1,0 +1,285 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-11 17:13-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: edu/forms.py:17 edu/models.py:21
+msgid "publicação"
+msgstr "publication"
+
+#: edu/models.py:5 edu/models.py:11
+msgid "nome"
+msgstr "name"
+
+#: edu/models.py:17
+msgid "autores"
+msgstr "authors"
+
+#: edu/models.py:18
+msgid "editora"
+msgstr "publisher"
+
+#: edu/models.py:19
+msgid "título"
+msgstr "title"
+
+#: edu/models.py:20
+msgid "ISBN"
+msgstr "ISBN"
+
+#: edu/models.py:22
+msgid "preço"
+msgstr "price"
+
+#: edu/models.py:23
+msgid "estoque"
+msgstr "stock"
+
+#: edu/templates/base.html:120
+msgid "Início"
+msgstr "Home"
+
+#: edu/templates/base.html:121
+msgid "Autores"
+msgstr "Authors"
+
+#: edu/templates/base.html:122
+msgid "Editoras"
+msgstr "Publishers"
+
+#: edu/templates/base.html:123
+msgid "Livros"
+msgstr "Books"
+
+#: edu/templates/base.html:126
+msgid "Sair"
+msgstr "Logout"
+
+#: edu/templates/base.html:134
+msgid "Idioma"
+msgstr "Language"
+
+#: edu/templates/edu/_form_autor.html:4
+msgid "Adicionar Autor"
+msgstr "Add Author"
+
+#: edu/templates/edu/_form_autor.html:6 edu/templates/edu/_form_editora.html:6
+#: edu/templates/edu/_form_livro.html:42
+msgid "Salvar"
+msgstr "Save"
+
+#: edu/templates/edu/_form_editora.html:4
+msgid "Adicionar Editora"
+msgstr "Add Publisher"
+
+#: edu/templates/edu/_form_livro.html:4
+msgid "Adicionar Livro"
+msgstr "Add Book"
+
+#: edu/templates/edu/_form_livro.html:13
+msgid "Buscar autor..."
+msgstr "Search author..."
+
+#: edu/templates/edu/_form_livro.html:29 edu/templates/edu/_form_livro.html:88
+msgid "Ver todos os autores"
+msgstr "See all authors"
+
+#: edu/templates/edu/_form_livro.html:85
+msgid "Ver menos"
+msgstr "See less"
+
+#: edu/templates/edu/create_autor.html:4
+msgid "Cadastrar Autor"
+msgstr "Register Author"
+
+#: edu/templates/edu/create_autor.html:5
+msgid "Cadastrar autor"
+msgstr "Register author"
+
+#: edu/templates/edu/create_editora.html:4
+msgid "Cadastrar Editora"
+msgstr "Register Publisher"
+
+#: edu/templates/edu/create_editora.html:5
+msgid "Cadastrar editora"
+msgstr "Register publisher"
+
+#: edu/templates/edu/create_livro.html:4
+msgid "Cadastrar Livro"
+msgstr "Register Book"
+
+#: edu/templates/edu/create_livro.html:5
+msgid "Cadastrar livro"
+msgstr "Register book"
+
+#: edu/templates/edu/delete_livro.html:5
+msgid "Confirmar Exclusão"
+msgstr "Confirm Deletion"
+
+#: edu/templates/edu/delete_livro.html:6
+#, python-format
+msgid "Tem certeza que deseja excluir o livro \"%(titulo)s\"?"
+msgstr "Are you sure you want to delete the book \"%(titulo)s\"?"
+
+#: edu/templates/edu/delete_livro.html:9
+msgid "Confirmar"
+msgstr "Confirm"
+
+#: edu/templates/edu/delete_livro.html:10
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: edu/templates/edu/edit_autor.html:4
+msgid "Editar Autor"
+msgstr "Edit Author"
+
+#: edu/templates/edu/edit_autor.html:5
+msgid "Editar autor"
+msgstr "Edit author"
+
+#: edu/templates/edu/edit_autor.html:10
+msgid "Edição de Autor"
+msgstr "Author Editing"
+
+#: edu/templates/edu/edit_autor.html:13 edu/templates/edu/edit_editora.html:13
+#: edu/templates/edu/edit_livro.html:13
+msgid "Salvar alterações"
+msgstr "Save changes"
+
+#: edu/templates/edu/edit_autor.html:15
+msgid "Voltar para listagem de autores"
+msgstr "Back to author list"
+
+#: edu/templates/edu/edit_editora.html:4
+msgid "Editar Editora"
+msgstr "Edit Publisher"
+
+#: edu/templates/edu/edit_editora.html:5
+msgid "Editar editora"
+msgstr "Edit publisher"
+
+#: edu/templates/edu/edit_editora.html:11
+msgid "Edição de Editora"
+msgstr "Publisher Editing"
+
+#: edu/templates/edu/edit_editora.html:15
+msgid "Voltar para listagem de editoras"
+msgstr "Back to publisher list"
+
+#: edu/templates/edu/edit_livro.html:4
+msgid "Editar Livro"
+msgstr "Edit Book"
+
+#: edu/templates/edu/edit_livro.html:5
+msgid "Editar livro"
+msgstr "Edit book"
+
+#: edu/templates/edu/edit_livro.html:11
+msgid "Edição de Livro"
+msgstr "Book Editing"
+
+#: edu/templates/edu/edit_livro.html:15
+msgid "Voltar para listagem de livros"
+msgstr "Back to book list"
+
+#: edu/templates/edu/list_autores.html:4
+msgid "Lista de Autores"
+msgstr "Author List"
+
+#: edu/templates/edu/list_autores.html:5
+msgid "Lista de autores"
+msgstr "Author list"
+
+#: edu/templates/edu/list_autores.html:10
+msgid "Cadastrar Novo Autor"
+msgstr "Register New Author"
+
+#: edu/templates/edu/list_autores.html:15
+msgid "Listagem de Autores"
+msgstr "Author Listing"
+
+#: edu/templates/edu/list_autores.html:30
+msgid "Nenhum autor cadastrado."
+msgstr "No authors registered."
+
+#: edu/templates/edu/list_editoras.html:4
+msgid "Lista de Editoras"
+msgstr "Publisher List"
+
+#: edu/templates/edu/list_editoras.html:5
+msgid "Lista de editoras"
+msgstr "Publisher list"
+
+#: edu/templates/edu/list_editoras.html:10
+msgid "Cadastrar Nova Editora"
+msgstr "Register New Publisher"
+
+#: edu/templates/edu/list_editoras.html:15
+msgid "Listagem de Editoras"
+msgstr "Publisher Listing"
+
+#: edu/templates/edu/list_editoras.html:30
+msgid "Nenhuma editora cadastrada."
+msgstr "No publishers registered."
+
+#: edu/templates/edu/list_livros.html:4
+msgid "Lista de Livros"
+msgstr "Book List"
+
+#: edu/templates/edu/list_livros.html:5
+msgid "Lista de livros"
+msgstr "Book list"
+
+#: edu/templates/edu/list_livros.html:10
+msgid "Cadastrar Novo Livro"
+msgstr "Register New Book"
+
+#: edu/templates/edu/list_livros.html:15
+msgid "Listagem de Livros"
+msgstr "Book Listing"
+
+#: edu/templates/edu/list_livros.html:26
+msgid "Excluir"
+msgstr "Delete"
+
+#: edu/templates/edu/list_livros.html:30
+msgid "Nenhum livro encontrado."
+msgstr "No books found."
+
+#: edu/templates/edu/list_livros.html:37 edu/templates/edu/list_livros.html:39
+msgid "Anterior"
+msgstr "Previous"
+
+#: edu/templates/edu/list_livros.html:51 edu/templates/edu/list_livros.html:53
+msgid "Próximo"
+msgstr "Next"
+
+#: edu/templates/home.html:5
+msgid "Painel inicial"
+msgstr "Home Dashboard"
+
+#: edu/templates/home.html:6
+msgid "Use a navegação acima para acessar as listagens e cadastros."
+msgstr "Use the navigation above to access listings and registrations."
+
+#: myapp/settings.py:124
+msgid "Português"
+msgstr "Portuguese"
+
+#: myapp/settings.py:125
+msgid "English"
+msgstr "English"

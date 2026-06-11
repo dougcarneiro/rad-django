@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Lista de Editoras{% endblock %}
-{% block header_title %}Lista de editoras{% endblock %}
+{% block title %}{% translate "Lista de Editoras" %}{% endblock %}
+{% block header_title %}{% translate "Lista de editoras" %}{% endblock %}
 
 {% block content %}
 {% if perms.edu.add_editora %}
 <section>
-        <a href="{% url 'edu:create_editora' %}" style="display:inline-block; margin-bottom: 20px; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Cadastrar Nova Editora</a>
+        <a href="{% url 'edu:create_editora' %}" style="display:inline-block; margin-bottom: 20px; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">{% translate "Cadastrar Nova Editora" %}</a>
     </section>
 {% endif %}
 
 <section>
-    <p>Listagem de Editoras</p>
+    <p>{% translate "Listagem de Editoras" %}</p>
     {% if editoras %}
         <ul>
             {% for editora in editoras %}
@@ -26,7 +27,7 @@
         </ul>
 {% else %}
 
-        <p>Nenhuma editora cadastrada.</p>
+        <p>{% translate "Nenhuma editora cadastrada." %}</p>
     {% endif %}
 </section>
 {% endblock %}

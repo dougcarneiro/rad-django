@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from .models import Autor, Editora, Livro
 
 class AutorForm(forms.ModelForm):
@@ -13,6 +14,7 @@ class EditoraForm(forms.ModelForm):
 
 class LivroForm(forms.ModelForm):
     publicacao = forms.DateField(
+        label=_('publicação'),
         widget=forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
         input_formats=['%Y-%m-%d']
     )

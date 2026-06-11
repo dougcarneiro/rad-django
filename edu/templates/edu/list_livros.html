@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Lista de Livros{% endblock %}
-{% block header_title %}Lista de livros{% endblock %}
+{% block title %}{% translate "Lista de Livros" %}{% endblock %}
+{% block header_title %}{% translate "Lista de livros" %}{% endblock %}
 
 {% block content %}
 {% if perms.edu.add_livro %}
 <section>
-        <a href="{% url 'edu:create_livro' %}" style="display:inline-block; margin-bottom: 20px; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Cadastrar Novo Livro</a>
+        <a href="{% url 'edu:create_livro' %}" style="display:inline-block; margin-bottom: 20px; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">{% translate "Cadastrar Novo Livro" %}</a>
     </section>
 {% endif %}
 
 <section>
-    <p>Listagem de Livros</p>
+    <p>{% translate "Listagem de Livros" %}</p>
     <ul>
         {% for livro in livros %}
             <li>
@@ -22,20 +23,20 @@
                 {% endif %}
                 
                 {% if perms.edu.delete_livro %}
-                    | <a href="{% url 'edu:delete_livro' livro.pk %}" style="color:red;">Excluir</a>
+                    | <a href="{% url 'edu:delete_livro' livro.pk %}" style="color:red;">{% translate "Excluir" %}</a>
                 {% endif %}
             </li>
         {% empty %}
-            <li>Nenhum livro encontrado.</li>
+            <li>{% translate "Nenhum livro encontrado." %}</li>
         {% endfor %}
     </ul>
     {% if livros.has_other_pages %}
     <nav class="pagination" aria-label="Page navigation">
         <ul style="list-style:none; display:flex; gap:8px; padding:8px;">
             {% if livros.has_previous %}
-                <li><a href="?page={{ livros.previous_page_number }}">&laquo; Anterior</a></li>
+                <li><a href="?page={{ livros.previous_page_number }}">&laquo; {% translate "Anterior" %}</a></li>
             {% else %}
-                <li style="opacity:0.5;">&laquo; Anterior</li>
+                <li style="opacity:0.5;">&laquo; {% translate "Anterior" %}</li>
             {% endif %}
 
             {% for num in livros.paginator.page_range %}
@@ -47,9 +48,9 @@
             {% endfor %}
 
             {% if livros.has_next %}
-                <li><a href="?page={{ livros.next_page_number }}">Próximo &raquo;</a></li>
+                <li><a href="?page={{ livros.next_page_number }}">{% translate "Próximo" %} &raquo;</a></li>
             {% else %}
-                <li style="opacity:0.5;">Próximo &raquo;</li>
+                <li style="opacity:0.5;">{% translate "Próximo" %} &raquo;</li>
             {% endif %}
         </ul>
     </nav>

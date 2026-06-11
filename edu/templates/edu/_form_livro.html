@@ -1,6 +1,7 @@
+{% load i18n %}
 <form method="post" action="{% url 'edu:create_livro' %}">
     {% csrf_token %}
-    <p>Adicionar Livro</p>
+    <p>{% translate "Adicionar Livro" %}</p>
 
     {% for field in form %}
         {% if field.name == 'autores' %}
@@ -9,7 +10,7 @@
                 <input
                     type="text"
                     id="busca-autor"
-                    placeholder="Buscar autor..."
+                    placeholder="{% translate 'Buscar autor...' %}"
                     autocomplete="off"
                     style="display:block; margin-bottom:6px; padding:4px 8px; width:100%; box-sizing:border-box;"
                 >
@@ -25,7 +26,7 @@
                     {% endfor %}
                 </span>
                 <button type="button" id="btn-ver-todos" style="margin-top:6px; display:none;">
-                    Ver todos os autores
+                    {% translate "Ver todos os autores" %}
                 </button>
                 {% if field.errors %}
                     {% for error in field.errors %}
@@ -38,7 +39,7 @@
         {% endif %}
     {% endfor %}
 
-    <button type="submit">Salvar</button>
+    <button type="submit">{% translate "Salvar" %}</button>
 </form>
 
 <script>
@@ -81,10 +82,10 @@
         // Mostra o botão só quando não há busca e existem autores além do limite
         if (termo === '' && items.length > LIMITE) {
             if (mostrandoTodos) {
-                btnVerTodos.textContent = 'Ver menos';
+                btnVerTodos.textContent = '{% translate "Ver menos" %}';
                 btnVerTodos.style.display = 'inline-block';
             } else {
-                btnVerTodos.textContent = 'Ver todos os autores (' + items.length + ')';
+                btnVerTodos.textContent = '{% translate "Ver todos os autores" %} (' + items.length + ')';
                 btnVerTodos.style.display = 'inline-block';
             }
         } else {

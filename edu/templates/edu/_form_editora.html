@@ -1,6 +1,7 @@
+{% load i18n %}
 <form method="post" action="{% url 'edu:create_editora' %}">
     {% csrf_token %}
-    <p>Adicionar Editora</p>
+    <p>{% translate "Adicionar Editora" %}</p>
     {{ form.as_p }}
-    <button type="submit">Salvar</button>
+    <button type="submit">{% translate "Salvar" %}</button>
 </form>

@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Editar Editora{% endblock %}
-{% block header_title %}Editar editora{% endblock %}
+{% block title %}{% translate "Editar Editora" %}{% endblock %}
+{% block header_title %}{% translate "Editar editora" %}{% endblock %}
 
 {% block content %}
 <section>
     <form method="post">
         {% csrf_token %}
-        <p>Edição de Editora</p>
+        <p>{% translate "Edição de Editora" %}</p>
         {{ form.as_p }}
-        <button type="submit">Salvar alterações</button>
+        <button type="submit">{% translate "Salvar alterações" %}</button>
     </form>
-    <p><a href="{% url 'edu:list_editoras' %}">Voltar para listagem de editoras</a></p>
+    <p><a href="{% url 'edu:list_editoras' %}">{% translate "Voltar para listagem de editoras" %}</a></p>
 </section>
 {% endblock %}
